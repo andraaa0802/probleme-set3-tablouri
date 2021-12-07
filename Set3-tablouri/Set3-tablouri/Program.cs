@@ -288,70 +288,238 @@ namespace Set3_tablouri
         /// </summary>
         private static void P11()
         {
-            throw new NotImplementedException();
+            
         }
         /// <summary>
-        /// Cautare binara. Se da un vector cu n elemente sortat in ordine crescatoare. Se cere sa se determine pozitia unui element dat k. Daca elementul nu se gaseste in vector rezultatul va fi -1. 
+        /// Cautare binara. Se da un vector cu n elemente sortat in ordine crescatoare. Se cere sa se determine pozitia unui element dat k. 
+        /// Daca elementul nu se gaseste in vector rezultatul va fi -1. 
         /// </summary>
         private static void P10()
         {
-            throw new NotImplementedException();
+            int n, i, sol = -1, left = 0, mid, right,k;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            right = n-1;
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti elementele vectorului");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti k:");
+            k = int.Parse(Console.ReadLine());
+            while(left<=right)
+            {
+                mid = (left + right) / 2;
+                if(v[mid]==k)
+                {
+                    sol = mid;
+                    break;
+                }
+                if (v[mid] > k)
+                    right = mid - 1;
+                if (v[mid] < k)
+                    left = mid + 1;
+            }
+            Console.WriteLine($"elementul {k} se afla pe pozitia {sol}");
         }
         /// <summary>
         /// Rotire k. Se da un vector cu n elemente. Rotiti elementele vectorului cu k pozitii spre stanga. 
         /// </summary>
         private static void P9()
         {
-            throw new NotImplementedException();
+            int n, i,j, k,aux;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti elementele vectorului");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            Console.WriteLine("introduceti k:");
+            k = int.Parse(Console.ReadLine());
+            for (j = 1; j <= k; j++)
+            {
+                aux = v[0];
+                for (i = 0; i < n - 1; i++)
+                    v[i] = v[i + 1];
+                v[n - 1] = aux;
+            }
+            Console.WriteLine("Noul vector este:");
+            for (i = 0; i < n; i++)
+                Console.Write(v[i] + " ");
         }
         /// <summary>
-        /// Rotire. Se da un vector cu n elemente. Rotiti elementele vectorului cu o pozitie spre stanga. Prin rotire spre stanga primul element devine ultimul, al doilea devine primul etc. 
+        /// Rotire. Se da un vector cu n elemente. Rotiti elementele vectorului cu o pozitie spre stanga.
+        /// Prin rotire spre stanga primul element devine ultimul, al doilea devine primul etc. 
         /// </summary>
         private static void P8()
         {
-            throw new NotImplementedException();
+            int n, i, aux;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti elementele vectorului");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            aux = v[0];
+            for (i = 0; i < n-1; i++)
+                v[i] = v[i + 1];
+            v[n - 1] = aux;
+            Console.WriteLine("Noul vector este:");
+            for (i = 0; i < n; i++)
+                Console.Write(v[i] + " ");
         }
         /// <summary>
-        /// Reverse. Se da un vector nu n elemente. Se cere sa se inverseze ordinea elementelor din vector. Prin inversare se intelege ca primul element devine ultimul, al doilea devine penultimul etc.
+        /// Reverse. Se da un vector cu n elemente. Se cere sa se inverseze ordinea elementelor din vector. 
+        /// Prin inversare se intelege ca primul element devine ultimul, al doilea devine penultimul etc.
         /// </summary>
         private static void P7()
         {
-            throw new NotImplementedException();
+            int n, i,aux;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti elementele vectorului");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            for(i=0;i<n/2;i++)
+            {
+                aux = v[i];
+                v[i] = v[n - i - 1];
+                v[n - i - 1] = aux;
+            }
+            Console.WriteLine("Noul vector este:");
+            for (i = 0; i < n; i++)
+                Console.Write(v[i] + " ");
         }
         /// <summary>
-        /// Se da un vector cu n elemente si o pozitie din vector k. Se cere sa se stearga din vector elementul de pe pozitia k. Prin stergerea unui element, toate elementele din dreapta lui se muta cu o pozitie spre stanga. 
+        /// Se da un vector cu n elemente si o pozitie din vector k. Se cere sa se stearga din vector elementul de pe pozitia k. 
+        /// Prin stergerea unui element, toate elementele din dreapta lui se muta cu o pozitie spre stanga. 
         /// </summary>
         private static void P6()
         {
-            throw new NotImplementedException();
+            int n, i, k;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti elementele vectorului");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti k:");
+            k = int.Parse(Console.ReadLine());
+            for(i=k;i<n-1;i++)
+                v[i] = v[i + 1];
+            n--;
+            Console.WriteLine("Noul vector este:");
+            for (i = 0; i < n; i++)
+                Console.Write(v[i] + " ");
         }
         /// <summary>
-        /// Se da un vector cu n elemente, o valoare e si o pozitie din vector k. Se cere sa se insereze valoarea e in vector pe pozitia k. Primul element al vectorului se considera pe pozitia zero. 
+        /// Se da un vector cu n elemente, o valoare e si o pozitie din vector k. Se cere sa se insereze valoarea e in vector pe pozitia k.
+        /// Primul element al vectorului se considera pe pozitia zero. 
         /// </summary>
         private static void P5()
         {
-            throw new NotImplementedException();
+            int n, i, e, k;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n+1];
+            Console.WriteLine("Introduceti elementele vectorului");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti e (valoarea care trebuie inserata):");
+            e = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti k (pozitia pe care se insereaza e):");
+            k = int.Parse(Console.ReadLine());
+            for (i = n; i > k; i--)
+                v[i] = v[i - 1];
+            n++;
+            v[k] = e;
+            Console.WriteLine("Noul vector este:");
+            for(i=0;i<n;i++)
+                Console.Write(v[i]+" ");
         }
         /// <summary>
         /// Deteminati printr-o singura parcurgere, cea mai mica si cea mai mare valoare dintr-un vector si de cate ori apar acestea. 
         /// </summary>
         private static void P4()
         {
-            throw new NotImplementedException();
+            int n, i, min = int.MaxValue, max = int.MinValue,apmin=0,apmax=0;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti pe o singura linie, despartite prin cate un spatiu, elementele vectorului");
+            string linie = Console.ReadLine();
+            char[] sep = { ' ' };
+            string[] tokens = linie.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+            for(i=0;i<n;i++)
+            {
+                v[i] = int.Parse(tokens[i]);
+                if(v[i]<min)
+                {
+                    apmin = 1;
+                    min = v[i];
+                }
+                else if (v[i] == min)
+                    apmin++;
+                if (v[i] > max)
+                {
+                    apmax = 1;
+                    max = v[i];
+                }
+                else if (v[i] == max)
+                    apmax++;
+            }
+            Console.WriteLine($"Minimul este {min} si apare de {apmin} ori, iar maximul este {max} si apare de {apmax} ori");
         }
         /// <summary>
-        /// Sa se determine pozitiile dintr-un vector pe care apar cel mai mic si cel mai mare element al vectorului. Pentru extra-credit realizati programul efectuand 3n/2 comparatii (in cel mai rau caz). 
+        /// Sa se determine pozitiile dintr-un vector pe care apar cel mai mic si cel mai mare element al vectorului. 
+        /// Pentru extra-credit realizati programul efectuand 3n/2 comparatii (in cel mai rau caz). 
         /// </summary>
         private static void P3()
         {
-            throw new NotImplementedException();
+            int n, i, pozmin = 0, pozmax=0;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti pe o singura linie, despartite prin cate un spatiu, elementele vectorului");
+            string linie = Console.ReadLine();
+            char[] sep = { ' ' };
+            string[] tokens = linie.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+            for (i = 1; i < n; i++)
+            {
+                v[i] = int.Parse(tokens[i]);
+                if (v[i] > v[pozmax])
+                    pozmax = i;
+                if (v[i] < v[pozmin])
+                    pozmin = i;
+            }
+            Console.WriteLine($"Minimul apare pe pozitia {pozmin}, iar maximul pe pozitia {pozmax}");
+
         }
         /// <summary>
         /// Se da un vector cu n elemente si o valoare k. Se cere sa se determine prima pozitie din vector pe care apare k. Daca k nu apare in vector rezultatul va fi -1. 
         /// </summary>
         private static void P2()
         {
-            throw new NotImplementedException();
+            int n, k, i,poz=-1;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti pe o singura linie, despartite prin cate un spatiu, elementele vectorului");
+            string linie = Console.ReadLine();
+            char[] sep = { ' ' };
+            string[] tokens = linie.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+            Console.WriteLine("Introduceti k:");
+            k = int.Parse(Console.ReadLine());
+            for(i=0;i<n;i++)
+            {
+                v[i] = int.Parse(tokens[i]);
+                if(v[i]==k)
+                {
+                    poz = i;
+                    break;
+                }
+            }
+            Console.WriteLine($"Pozitia pe care apare k este {poz}");
         }
         /// <summary>
         /// Calculati suma elementelor unui vector de n numere citite de la tastatura. Rezultatul se va afisa pe ecran.
