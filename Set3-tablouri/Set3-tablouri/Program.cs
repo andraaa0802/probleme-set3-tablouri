@@ -263,32 +263,102 @@ namespace Set3_tablouri
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Interschimbati elementele unui vector in asa fel incat la final toate valorile egale cu zero sa ajunga la sfarsit. (nu se vor folosi vectori suplimentari - operatia se va realiza inplace cu un algoritm eficient - se va face o singura parcugere a vectorului). 
+        /// Interschimbati elementele unui vector in asa fel incat la final toate valorile egale cu zero sa ajunga la sfarsit.
+        /// (nu se vor folosi vectori suplimentari - operatia se va realiza inplace cu un algoritm eficient - se va face o singura parcugere
+        /// a vectorului). 
         /// </summary>
         private static void P14()
         {
-            throw new NotImplementedException();
+            int n, i, j, k, aux,ultim;
+            Console.WriteLine("introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("introduceti, pe cate o linie, elementele vectorului:");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            ultim = n-1;
+            for(i=0;i<ultim;i++)
+            {
+                if(v[i]==0)
+                {
+                    v[i] = v[ultim];
+                    v[ultim] = 0;
+                    ultim--;
+                    i--;
+                }
+            }
+            Console.WriteLine("vectorul reordonat este:");
+            for (i = 0; i < n; i++)
+                Console.Write(v[i] + " ");
         }
         /// <summary>
         /// Sortare prin insertie. Implementati algoritmul de sortare <Insertion Sort>. 
         /// </summary>
         private static void P13()
         {
-            throw new NotImplementedException();
+            int n, i, k, aux;
+            Console.WriteLine("introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("introduceti, pe cate o linie, elementele vectorului:");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            for(i=1;i<n;i++)
+                for(k=i;k>0 && v[k]<v[k-1];k--)
+                {
+                    aux = v[k];
+                    v[k] = v[k - 1];
+                    v[k - 1] = aux;
+                }
+            Console.WriteLine("vectorul ordonat crescator este:");
+            for (i = 0; i < n; i++)
+                Console.Write(v[i] + " ");
         }
         /// <summary>
         /// Sortare selectie. Implementati algoritmul de sortare <Selection Sort>. 
         /// </summary>
         private static void P12()
         {
-            throw new NotImplementedException();
+            int n, i, j, k,aux;
+            Console.WriteLine("introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("introduceti, pe cate o linie, elementele vectorului:");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            for(i=0;i<n;i++)
+            {
+                k = i;
+                for (j = i + 1; j < n; j++)
+                    if (v[j] < v[k])
+                        k = j;
+                aux = v[i];
+                v[i] = v[k];
+                v[k] = aux;
+            }
+            Console.WriteLine("vectorul ordonat crescator este:");
+            for(i=0;i<n;i++)
+                Console.Write(v[i]+" ");
         }
         /// <summary>
         /// Se da un numar natural n. Se cere sa se afiseze toate numerele prime mai mici sau egale cu n (ciurul lui Eratostene). 
         /// </summary>
         private static void P11()
         {
-            
+            int n, i, j;
+            Console.WriteLine("introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[100001];
+            v[1] = 1;
+            //v[x]=1 daca x NU este prim si v[x]=0 daca x este prim
+            for (i = 2; i * i <= n; i++)
+                if (v[i] == 0)
+                    for (j = 2; j <= n / 2; j++)
+                        v[i * j] = 1;
+            Console.WriteLine("numerele prime mai mici decat {0} sunt: ",n);
+            for(i=1;i<=n;i++)
+                if(v[i]==0)
+                    Console.Write(i+" ");
         }
         /// <summary>
         /// Cautare binara. Se da un vector cu n elemente sortat in ordine crescatoare. Se cere sa se determine pozitia unui element dat k. 
