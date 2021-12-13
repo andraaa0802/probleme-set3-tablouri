@@ -142,16 +142,19 @@ namespace Set3_tablouri
             }
         }
         /// <summary>
-        /// (Element majoritate). Intr-un vector cu n elemente, un element m este element majoritate daca mai mult de n/2 din valorile vectorului sunt egale cu m 
-        /// (prin urmare, daca un vector are element majoritate acesta este unui singur). 
-        /// Sa se determine elementul majoritate al unui vector (daca nu exista atunci se va afisa <nu exista>). (incercati sa gasiti o solutie liniara). 
+        /// (Element majoritate). Intr-un vector cu n elemente, un element m este element majoritate daca mai mult de n/2 din valorile vectorului 
+        /// sunt egale cu m (prin urmare, daca un vector are element majoritate acesta este unui singur). 
+        /// Sa se determine elementul majoritate al unui vector (daca nu exista atunci se va afisa <nu exista>). 
+        /// (incercati sa gasiti o solutie liniara). 
         /// </summary>
         private static void P31()
         {
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Sortare bicriteriala. Se dau doi vectori de numere intregi E si W, unde E[i] este un numar iar W[i] este un numar care reprezinta ponderea lui E[i]. Sortati vectorii astfel incat elementele lui E sa fie in in ordine crescatoare iar pentru doua valori egale din E, cea cu pondere mai mare va fi prima. 
+        /// Sortare bicriteriala. Se dau doi vectori de numere intregi E si W, unde E[i] este un numar iar W[i] este un numar care reprezinta
+        /// ponderea lui E[i]. Sortati vectorii astfel incat elementele lui E sa fie in in ordine crescatoare iar pentru doua valori egale din E, 
+        /// cea cu pondere mai mare va fi prima. 
         /// </summary>
         private static void P30()
         {
@@ -172,28 +175,32 @@ namespace Set3_tablouri
             throw new NotImplementedException();
         }
         /// <summary>
-        ///  Se da un vector si un index in vectorul respectiv. Se cere sa se determine valoarea din vector care va fi pe pozitia index dupa ce vectorul este sortat. 
+        ///  Se da un vector si un index in vectorul respectiv. Se cere sa se determine valoarea din vector care va fi pe pozitia index 
+        ///  dupa ce vectorul este sortat. 
         /// </summary>
         private static void P27()
         {
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Se dau doua numere naturale foarte mari (cifrele unui numar foarte mare sunt stocate intr-un vector - fiecare cifra pe cate o pozitie). Se cere sa se determine suma, diferenta si produsul a doua astfel de numere. 
+        /// Se dau doua numere naturale foarte mari (cifrele unui numar foarte mare sunt stocate intr-un vector - fiecare cifra pe cate o pozitie). 
+        /// Se cere sa se determine suma, diferenta si produsul a doua astfel de numere. 
         /// </summary>
         private static void P26()
         {
             throw new NotImplementedException();
         }
         /// <summary>
-        /// (Interclasare) Se dau doi vector sortati crescator v1 si v2. Construiti un al treilea vector ordonat crescator format din toate elementele din  v1 si v2. Sunt permise elemente duplicate. 
+        /// (Interclasare) Se dau doi vector sortati crescator v1 si v2. Construiti un al treilea vector ordonat crescator format
+        /// din toate elementele din  v1 si v2. Sunt permise elemente duplicate. 
         /// </summary>
         private static void P25()
         {
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Aceleasi cerinte ca si la problema anterioara dar de data asta elementele sunt stocate ca vectori cu valori binare (v[i] este 1 daca i face parte din multime si este 0 in caz contrar).
+        /// Aceleasi cerinte ca si la problema anterioara dar de data asta elementele sunt stocate ca vectori cu valori binare 
+        /// (v[i] este 1 daca i face parte din multime si este 0 in caz contrar).
         /// </summary>
         private static void P24()
         {
@@ -207,7 +214,8 @@ namespace Set3_tablouri
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Se dau doi vectori v1 si v2. Se cere sa determine intersectia, reuniunea, si diferentele v1-v2 si v2 -v1 (implementarea operatiilor cu multimi). Elementele care se repeta vor fi scrise o singura data in rezultat. 
+        /// Se dau doi vectori v1 si v2. Se cere sa determine intersectia, reuniunea, si diferentele v1-v2 si v2 -v1 
+        /// (implementarea operatiilor cu multimi). Elementele care se repeta vor fi scrise o singura data in rezultat. 
         /// </summary>
         private static void P22()
         {
@@ -221,21 +229,26 @@ namespace Set3_tablouri
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Se dau doua siraguri de margele formate din margele albe si negre, notate s1, respectiv s2. Determinati numarul de suprapuneri (margea cu margea) a unui sirag peste celalalt astfel incat margelele suprapuse au aceeasi culoare. Siragurile de margele se pot roti atunci cand le suprapunem. 
+        /// Se dau doua siraguri de margele formate din margele albe si negre, notate s1, respectiv s2. 
+        /// Determinati numarul de suprapuneri (margea cu margea) a unui sirag peste celalalt astfel incat margelele suprapuse au aceeasi culoare. 
+        /// Siragurile de margele se pot roti atunci cand le suprapunem. 
         /// </summary>
         private static void P20()
         {
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Se da un vector s (vectorul in care se cauta) si un vector p (vectorul care se cauta). Determinati de cate ori apare p in s. De ex. Daca s = [1,2,1,2,1,3,1,2,1] si p = [1,2,1] atunci p apare in s de 3 ori. (Problema este dificila doar daca o rezolvati cu un algoritm liniar).
+        /// Se da un vector s (vectorul in care se cauta) si un vector p (vectorul care se cauta). Determinati de cate ori apare p in s.
+        /// De ex. Daca s = [1,2,1,2,1,3,1,2,1] si p = [1,2,1] atunci p apare in s de 3 ori.
+        /// (Problema este dificila doar daca o rezolvati cu un algoritm liniar).
         /// </summary>
         private static void P19()
         {
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Se da un polinom de grad n ai carui coeficienti sunt stocati intr-un vector. Cel mai putin semnificativ coeficient este pe pozitia zero in vector. Se cere valoarea polinomului intr-un punct x. 
+        /// Se da un polinom de grad n ai carui coeficienti sunt stocati intr-un vector. Cel mai putin semnificativ coeficient este
+        /// pe pozitia zero in vector. Se cere valoarea polinomului intr-un punct x. 
         /// </summary>
         private static void P18()
         {
@@ -246,21 +259,66 @@ namespace Set3_tablouri
         /// </summary>
         private static void P17()
         {
-            throw new NotImplementedException();
+            
         }
         /// <summary>
         /// Se da un vector de n numere naturale. Determinati cel mai mare divizor comun al elementelor vectorului.
         /// </summary>
         private static void P16()
         {
-            throw new NotImplementedException();
+            int n, i,div=-1;
+            Console.WriteLine("introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("introduceti, pe cate o linie, elementele vectorului:");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            for(i=0;i<n-1 && div!=1;i++)
+            {
+                div = cmmdc(v[i], v[i + 1]);
+            }
+            Console.WriteLine($"Cmmdc al vectorului este {div}");
         }
+
+        private static int cmmdc(int v1, int v2)
+        {
+            int r;
+            while  (v2!=0)
+            {
+                r = v1 % v2;
+                v1 = v2;
+                v2 = r;
+            }
+            return v1;
+        }
+
         /// <summary>
         /// Modificati un vector prin eliminarea elementelor care se repeta, fara a folosi un alt vector. 
         /// </summary>
         private static void P15()
         {
-            throw new NotImplementedException();
+            int n, i,j,k;
+            Console.WriteLine("introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("introduceti, pe cate o linie, elementele vectorului:");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            for(i=0;i<n-1;i++)
+                for(j=i+1;j<n;j++)
+                {
+                    if (v[i] == v[j])
+                    {
+                        for (k = j; k < n - 1; k++)
+                            v[k] = v[k + 1];
+                        n--;
+                        j--;
+                    }
+                    
+                }
+            Console.WriteLine("vectorul modificat este:");
+            for (i = 0; i < n; i++)
+                Console.Write(v[i] + " ");
         }
         /// <summary>
         /// Interschimbati elementele unui vector in asa fel incat la final toate valorile egale cu zero sa ajunga la sfarsit.
@@ -269,7 +327,7 @@ namespace Set3_tablouri
         /// </summary>
         private static void P14()
         {
-            int n, i, j, k, aux,ultim;
+            int n, i, ultim;
             Console.WriteLine("introduceti n:");
             n = int.Parse(Console.ReadLine());
             int[] v = new int[n];
