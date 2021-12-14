@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace Set3_tablouri
 {
@@ -180,7 +181,27 @@ namespace Set3_tablouri
         /// </summary>
         private static void P27()
         {
-            throw new NotImplementedException();
+            int n, index,i,j,aux;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti indexul:");
+            index = int.Parse(Console.ReadLine());
+            int[] v = new int[n + 1];
+            Console.WriteLine("Introducetin elementele vectorului pe cate o linie:");
+            for (i = 1; i <= n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+            for(i=1;i<n;i++)
+                for(j=i+1;j<=n;j++)
+                    if(v[j]<v[i])
+                    {
+                        aux = v[i];
+                        v[i] = v[j];
+                        v[j] = aux;
+                    }
+            Console.WriteLine("Vectorul sortat este:");
+            for(i=1;i<=n;i++)
+                Console.Write(v[i]+" ");
+            Console.WriteLine($"\nElementul de pe pozitia {index} este {v[index]}");
         }
         /// <summary>
         /// Se dau doua numere naturale foarte mari (cifrele unui numar foarte mare sunt stocate intr-un vector - fiecare cifra pe cate o pozitie). 
@@ -196,7 +217,34 @@ namespace Set3_tablouri
         /// </summary>
         private static void P25()
         {
-            throw new NotImplementedException();
+            int n, m, i, j,nr=0;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti m:");
+            m = int.Parse(Console.ReadLine());
+            int[] v1 = new int[n+1];
+            int[] v2 = new int[m+1];
+            int[] v3 = new int[101];
+            Console.WriteLine("Introduceti elementele primului vector, pe cate o linie:");
+            for (i = 1; i <= n; i++)
+                v1[i] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti elementele celui de-al doilea vector, pe cate o linie:");
+            for (j = 1; j <= m; j++)
+                v2[j] = int.Parse(Console.ReadLine());
+            i = 1;
+            j = 1;
+            while (i <= n && j <= m)
+                if (v1[i] < v2[j])
+                    v3[++nr] = v1[i++];
+                else
+                    v3[++nr] = v2[j++];
+            while (i <= n)
+                v3[++nr] = v1[i++];
+            while (j <= m)
+                v3[++nr] = v2[j++];
+            Console.WriteLine("Elementele interclasate sunt:");
+            for(i=1;i<=n+m;i++)
+                Console.Write(v3[i]+" ");
         }
         /// <summary>
         /// Aceleasi cerinte ca si la problema anterioara dar de data asta elementele sunt stocate ca vectori cu valori binare 
@@ -252,14 +300,60 @@ namespace Set3_tablouri
         /// </summary>
         private static void P18()
         {
-            throw new NotImplementedException();
+            int n,i,nr,x;
+            double val=0;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti x:");
+            x = int.Parse(Console.ReadLine());
+            int[] coef = new int[n];
+            Console.WriteLine("Introduceti coeficientii pe o singura linie, despariti printr-un spatiu:");
+            string linie = Console.ReadLine();
+            char[] seps = { ' ' };
+            string[] token = linie.Split(seps, StringSplitOptions.RemoveEmptyEntries);
+            for(i=0;i<=n;i++)
+            {
+                nr = int.Parse(token[i]);
+                val = val + nr * Math.Pow(x, i);
+            }
+            Console.WriteLine($"Valoarea polinomului in punctul {x} este {val}");
+    
         }
         /// <summary>
         /// Se da un numar n in baza 10 si un numar b. 1 < b < 17. Sa se converteasca si sa se afiseze numarul n in baza b.   
         /// </summary>
         private static void P17()
         {
-            
+            int n, b,rest,copie_n;
+            Stack baza_b= new Stack();
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            copie_n = n;
+            Console.WriteLine("Introduceti b:");
+            b = int.Parse(Console.ReadLine());
+            while (copie_n!=0)
+            {
+                rest = copie_n % b;
+                if (rest == 10)
+                    baza_b.Push('A');
+                else if (rest == 11)
+                    baza_b.Push('B');
+                else if (rest == 12)
+                    baza_b.Push('C');
+                else if (rest == 13)
+                    baza_b.Push('D');
+                else if (rest == 14)
+                    baza_b.Push('E');
+                else if (rest == 15)
+                    baza_b.Push('F');
+                else
+                    baza_b.Push(rest);
+                copie_n = copie_n / b;
+            }
+            Console.WriteLine($"Numarul {n} in baza {b} este:");
+            foreach(var nr in baza_b)
+                Console.Write(nr);
+
         }
         /// <summary>
         /// Se da un vector de n numere naturale. Determinati cel mai mare divizor comun al elementelor vectorului.
