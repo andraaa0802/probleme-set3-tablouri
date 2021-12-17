@@ -150,7 +150,31 @@ namespace Set3_tablouri
         /// </summary>
         private static void P31()
         {
-            throw new NotImplementedException();
+            int n, cand=-1,k=0,i,nr=0;
+            Console.WriteLine("Introduceti n:");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti elementele vectorului pe cate o linie:");
+            for(i=0;i<n;i++)
+            {
+                v[i] = int.Parse(Console.ReadLine());
+                if (k == 0)
+                {
+                    cand = v[i];
+                    k = 1;
+                }
+                else if (v[i] == cand)
+                    k++;
+                else
+                    k--;
+            }
+            for (i = 0; i < n; i++)
+                if (v[i] == cand)
+                    nr++;
+            if(nr>n/2)
+                Console.WriteLine($"Elementul majoritar este {cand}");
+            else
+                Console.WriteLine("Nu exista element majoritar");
         }
         /// <summary>
         /// Sortare bicriteriala. Se dau doi vectori de numere intregi E si W, unde E[i] este un numar iar W[i] este un numar care reprezinta
