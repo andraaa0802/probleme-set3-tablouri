@@ -183,7 +183,50 @@ namespace Set3_tablouri
         /// </summary>
         private static void P30()
         {
-            throw new NotImplementedException();
+            int n, i,j,aux;
+            Console.WriteLine("Introduceti numarul de elemente al vectorilor E si W:");
+            n = int.Parse(Console.ReadLine());
+            int[] E = new int[n];
+            int[] frecv = new int[10000];
+            Console.WriteLine($"Introduceti cele {n} elemente ale vectorului E (fiecare el. pe cate o linie):");
+            for(i=0;i<n;i++)
+            {
+                E[i] = int.Parse(Console.ReadLine());
+                frecv[E[i]]++;
+            }
+            int[] W = new int[n];
+            Console.WriteLine($"Introduceti cele {n} elemente ale vectorului W (fiecare el. pe cate o linie):");
+            for (i = 0; i < n; i++)
+            {
+                W[i] = int.Parse(Console.ReadLine());
+            }
+            for (i=0;i<n-1;i++)
+            {
+                if (frecv[E[i]]==2)
+                {
+                    for (j=i+1;j<n;j++)
+                        if(j==E[i])
+                        {
+                            if (W[i]<W[j])
+                            {
+                                aux = E[i];
+                                E[i] = E[j];
+                                E[j] = aux;
+                            }
+                        }
+                }
+            }
+            for (i=0;i<n-1;i++)
+                for(j=i+1;j<n;j++)
+                    if (E[i]>E[j])
+                    {
+                        aux = E[i];
+                        E[i] = E[j];
+                        E[j] = aux;
+                    }
+            Console.WriteLine("Vectorul sortat dupa criteriile din cerinta este urmatorul: ");
+            for(i=0;i<n;i++)
+                Console.Write(E[i]+" ");
         }
         /// <summary>
         /// MergeSort. Sortati un vector folosind metoda MergeSort.
@@ -211,7 +254,7 @@ namespace Set3_tablouri
             Console.WriteLine("Introduceti indexul:");
             index = int.Parse(Console.ReadLine());
             int[] v = new int[n + 1];
-            Console.WriteLine("Introducetin elementele vectorului pe cate o linie:");
+            Console.WriteLine("Introduceti elementele vectorului pe cate o linie:");
             for (i = 1; i <= n; i++)
                 v[i] = int.Parse(Console.ReadLine());
             for(i=1;i<n;i++)
@@ -233,7 +276,79 @@ namespace Set3_tablouri
         /// </summary>
         private static void P26()
         {
-            throw new NotImplementedException();
+            int n, m, i, item_nr1, item_nr2,suma,carry,produs,poz=0,j;
+            Console.WriteLine("Cate cifre are primul numar?");
+            n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti cifrele primului numar pe linii separate:");
+            int[] nr1 = new int[n];
+            for (i = 0; i < n; i++)
+                nr1[i] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cate cifre are al doilea numar?");
+            m = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti cifrele celui de-al doilea numar pe linii separate:");
+            int[] nr2 = new int[m];
+            for (i = 0; i < m; i++)
+                nr2[i] = int.Parse(Console.ReadLine());
+            Array.Reverse(nr1);
+            Array.Reverse(nr2);
+            int lungime = Math.Max(n,m);
+            //pentru suma:
+            int[] rezultat_s = new int[101];
+            for(i=0;i<lungime;i++)
+            {
+                item_nr1 = (i < n) ? nr1[i] : 0;
+                item_nr2 = (i < m) ? nr2[i] : 0;
+
+                suma = rezultat_s[i] + item_nr1 + item_nr2;
+                rezultat_s[i] = suma % 10;
+
+                carry = suma / 10;
+                rezultat_s[i + 1] += carry;
+            }
+            Console.WriteLine("Suma este: ");
+            for(i=lungime-1;i>=0;i--)
+                Console.Write(rezultat_s[i]+" ");
+            Console.WriteLine();
+
+            //pentru diferenta:
+            int[] rezultat_d = new int[101];
+            for (i = 0; i < lungime; i++)
+            {
+                item_nr1 = (i < n) ? nr1[i] : 0;
+                item_nr2 = (i < m) ? nr2[i] : 0;
+
+                if (item_nr1 > item_nr2)
+                    rezultat_d[i] = item_nr1 - item_nr2;
+                else if(item_nr2>item_nr1)
+                {
+                    rezultat_d[i] = (item_nr1 + 10) - item_nr2;
+                    if(i<lungime-1)
+                    nr1[i + 1]--;
+                }
+            }
+            Console.WriteLine("Diferenta este: " );
+            for (i = lungime-1; i >= 0; i--)
+                Console.Write(rezultat_d[i] + " ");
+            Console.WriteLine();
+            //pentru produs:
+            int[] rezultat_p = new int[101];
+            carry = 0;
+            for(i=0;i<n;i++)
+            {
+                poz = 0;
+                for(j=0;j<m;j++)
+                {
+                    produs = rezultat_p[poz+i]+nr1[i] * nr2[j];
+                    rezultat_p[poz+i] += produs % 10;
+                    carry = produs / 10;
+                    rezultat_p[poz +i+ 1] += carry;
+                    poz++;
+                }
+            }
+            for(i=n*m-1;i>=0;i--)
+                Console.Write(rezultat_p[i]+" ");
+
+
         }
         /// <summary>
         /// (Interclasare) Se dau doi vector sortati crescator v1 si v2. Construiti un al treilea vector ordonat crescator format
@@ -276,14 +391,191 @@ namespace Set3_tablouri
         /// </summary>
         private static void P24()
         {
-            throw new NotImplementedException();
+            int n, m, i;
+            Console.WriteLine("Cate elemente are primul vector?");
+            n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cate elemente are al doilea vector?");
+            m = int.Parse(Console.ReadLine());
+            int[] v1 = new int[n];
+            int[] v2 = new int[m];
+            int[] v3 = new int[n + m];
+            Console.WriteLine("Introduceti pe cate o linie elementele primului vector:");
+            for (i = 0; i < n; i++)
+                v1[i] = int.Parse(Console.ReadLine());
+            Array.Sort(v1); //in caz ca nu sunt introduse in ordine crescatoare
+            Console.WriteLine("Introduceti pe cate o linie elementele celui de-al doilea vector:");
+            for (i = 0; i < m; i++)
+                v2[i] = int.Parse(Console.ReadLine());
+            Array.Sort(v2); //in caz ca nu sunt introduse in ordine crescatoare
+            Console.WriteLine("Vectorii sortati crescator sunt:");
+            for (i = 0; i < n; i++)
+                Console.Write(v1[i] + " ");
+            Console.WriteLine();
+            for (i = 0; i < m; i++)
+                Console.Write(v2[i] + " ");
+            Console.WriteLine();
+            Intersectia_v2(v1, v2, n, m);
+            Console.WriteLine();
+            Reuniunea_v2(v1, v2, n, m);
+            Console.WriteLine();
+            Diferenta12_v2(v1, v2, n, m);
+            Console.WriteLine();
+            Diferenta21_v2(v2, v1, n, m);
         }
+
+        private static void Diferenta21_v2(int[] v2, int[] v1, int n, int m)
+        {
+            int i, j, poz = 0, gasit;
+            int[] v3 = new int[n + m];
+            for (j = 0; j < m; j++)
+            {
+                gasit = 0;
+                for (i = 0; i < m; i++)
+                    if (v2[j] == v1[i])
+                    {
+                        gasit = 1;
+                        break;
+                    }
+                if (gasit == 0)
+                {
+                    v3[poz] = 1;
+                    poz++;
+                }
+                else
+                {
+                    v3[poz] = 0;
+                    poz++;
+                }
+            }
+            Console.WriteLine("Diferenta vectorilor v2 si v1 este urmatoarea:");
+            for (i = 0; i < poz; i++)
+                Console.Write(v3[i] + " ");
+        }
+
+        private static void Diferenta12_v2(int[] v1, int[] v2, int n, int m)
+        {
+            int i, j, poz = 0, gasit;
+            int[] v3 = new int[n + m];
+            for (i = 0; i < n; i++)
+            {
+                gasit = 0;
+                for (j = 0; j < m; j++)
+                    if (v1[i] == v2[j])
+                    {
+                        gasit = 1;
+                        break;
+                    }
+                if (gasit == 0)
+                {
+                    v3[poz] = 1;
+                    poz++;
+                }
+                else
+                {
+                    v3[poz] = 0;
+                    poz++;
+                }
+            }
+            Console.WriteLine("Diferenta vectorilor v1 si v2 este urmatoarea:");
+            for (i = 0; i < poz; i++)
+                Console.Write(v3[i] + " ");
+        }
+
+        private static void Reuniunea_v2(int[] v1, int[] v2, int n, int m)
+        {
+            int i, j, poz = 0, gasit;
+            int[] v3 = new int[n + m];
+            for (i = 0; i < n; i++)
+            {
+                v3[poz] = 1;
+                poz++;
+            }
+            for (i = 0; i < m; i++)
+            {
+                gasit = 0;
+                for (j = 0; j < n; j++)
+                    if (v2[i] == v1[j])
+                    {
+                        gasit = 1;
+                        v3[poz] = 1;
+                        poz++;
+                        break;
+                    }
+                if (gasit == 0)
+                {
+                    v3[poz] = 1;
+                    poz++;
+                }
+            }
+            Console.WriteLine("Reuniunea vectorilor este urmatoarea:");
+            for (i = 0; i < poz; i++)
+                Console.Write(v3[i]+ " ");
+        }
+
+        private static void Intersectia_v2(int[] v1, int[] v2, int n, int m)
+        {
+            int i, j, poz = 0, gasit;
+            int[] v3 = new int[n + m];
+            for (i = 0; i < n; i++)
+            {
+                gasit = 0;
+                for (j = 0; j < m; j++)
+                    if (v1[i] == v2[j])
+                    {
+                        gasit = 1;
+                        break;
+                    }
+                if (gasit == 1)
+                {
+                    v3[poz] = 1;
+                    poz++;
+                }
+                else
+                {
+                    v3[poz] = 0;
+                    poz++;
+                }
+            }
+            Console.WriteLine("Intersectia vectorilor este urmatoarea:");
+            for (i = 0; i < poz; i++)
+                Console.Write(v3[i]+" ");
+        }
+
         /// <summary>
-        /// Aceleasi cerinte ca si la problema anterioara dar de data asta elementele din v1 respectiv v2  sunt in ordine strict crescatoare. 
+        /// Aceleasi cerinte ca si la problema anterioara dar de data asta elementele din v1 respectiv v2 sunt in ordine strict crescatoare. 
         /// </summary>
         private static void P23()
         {
-            throw new NotImplementedException();
+            int n, m, i;
+            Console.WriteLine("Cate elemente are primul vector?");
+            n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cate elemente are al doilea vector?");
+            m = int.Parse(Console.ReadLine());
+            int[] v1 = new int[n];
+            int[] v2 = new int[m];
+            int[] v3 = new int[n + m];
+            Console.WriteLine("Introduceti pe cate o linie elementele primului vector:");
+            for (i = 0; i < n; i++)
+                v1[i] = int.Parse(Console.ReadLine());
+            Array.Sort(v1); //in caz ca nu sunt introduse in ordine crescatoare
+            Console.WriteLine("Introduceti pe cate o linie elementele celui de-al doilea vector:");
+            for (i = 0; i < m; i++)
+                v2[i] = int.Parse(Console.ReadLine());
+            Array.Sort(v2); //in caz ca nu sunt introduse in ordine crescatoare
+            Console.WriteLine("Vectorii sortati crescator sunt:");
+            for (i = 0; i < n; i++)
+                Console.Write(v1[i]+" ");
+            Console.WriteLine();
+            for (i = 0; i < m; i++)
+                Console.Write(v2[i] + " ");
+            Console.WriteLine();
+            Intersectia(v1, v2, n, m);
+            Console.WriteLine();
+            Reuniunea(v1, v2, n, m);
+            Console.WriteLine();
+            Diferenta12(v1, v2, n, m);
+            Console.WriteLine();
+            Diferenta21(v2, v1, n, m);
         }
         /// <summary>
         /// Se dau doi vectori v1 si v2. Se cere sa determine intersectia, reuniunea, si diferentele v1-v2 si v2 -v1 
@@ -291,14 +583,176 @@ namespace Set3_tablouri
         /// </summary>
         private static void P22()
         {
-            throw new NotImplementedException();
+            int n, m,i;
+            Console.WriteLine("Cate elemente are primul vector?");
+            n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cate elemente are al doilea vector?");
+            m = int.Parse(Console.ReadLine());
+            int[] v1 = new int[n];
+            int[] v2 = new int[m];
+            int[] v3 = new int[n + m];
+            Console.WriteLine("Introduceti pe cate o linie elementele primului vector:");
+            for (i = 0; i < n; i++)
+                v1[i] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti pe cate o linie elementele celui de-al doilea vector:");
+            for (i = 0; i < m; i++)
+                v2[i] = int.Parse(Console.ReadLine());
+            Intersectia(v1, v2, n, m);
+            Console.WriteLine();
+            Reuniunea(v1, v2, n, m);
+            Console.WriteLine();
+            Diferenta12(v1, v2, n, m);
+            Console.WriteLine();
+            Diferenta21(v2, v1, n, m);
         }
+
+        private static void Diferenta21(int[] v2, int[] v1, int n, int m)
+        {
+            int i, j, poz = 0, gasit;
+            int[] v3 = new int[n + m];
+            for (j = 0; j < m; j++)
+            {
+                gasit = 0;
+                for (i = 0; i < m; i++)
+                    if (v2[j] == v1[i])
+                    {
+                        gasit = 1;
+                        break;
+                    }
+                if (gasit == 0)
+                {
+                    v3[poz] = v2[j];
+                    poz++;
+                }
+            }
+            Console.WriteLine("Diferenta vectorilor v2 si v1 este urmatoarea:");
+            for (i = 0; i < poz; i++)
+                Console.Write(v3[i] + " ");
+        }
+
+        private static void Diferenta12(int[] v1, int[] v2, int n, int m)
+        {
+            int i, j, poz = 0, gasit;
+            int[] v3 = new int[n + m];
+            for (i=0;i<n;i++)
+            {
+                gasit = 0;
+                for (j = 0; j < m; j++)
+                    if (v1[i] == v2[j])
+                    {
+                        gasit = 1;
+                        break;
+                    }
+                if (gasit==0)
+                {
+                    v3[poz] = v1[i];
+                    poz++;
+                }
+            }
+            Console.WriteLine("Diferenta vectorilor v1 si v2 este urmatoarea:");
+            for (i = 0; i < poz; i++)
+                Console.Write(v3[i] + " ");
+        }
+
+        private static void Reuniunea(int[] v1, int[] v2, int n, int m)
+        {
+            int i, j, poz = 0, gasit;
+            int[] v3 = new int[n + m];
+            for (i=0;i<n;i++)
+            {
+                v3[poz] = v1[i];
+                poz++;
+            }
+            for(i=0;i<m;i++)
+            {
+                gasit = 0;
+                for(j=0;j<n;j++)
+                    if(v2[i]==v1[j])
+                    {
+                        gasit = 1;
+                        break;
+                    }
+                if(gasit==0)
+                {
+                    v3[poz] = v2[i];
+                    poz++;
+                }
+            }
+            Console.WriteLine("Reuniunea vectorilor este urmatoarea:");
+            for(i=0;i<poz;i++)
+                Console.Write(v3[i]+" ");
+        }
+
+        private static void Intersectia(int[] v1, int[] v2, int n, int m)
+        {
+            int i, j, poz=0,gasit;
+            int[] v3 = new int[n + m];
+            for(i=0;i<n;i++)
+            {
+                gasit = 0;
+                for (j = 0; j <m; j++)
+                    if (v1[i] == v2[j])
+                    {
+                        gasit = 1;
+                        break;
+                    }
+                if (gasit==1)
+                {
+                    v3[poz] = v1[i];
+                    poz++;
+                }     
+            }
+            Console.WriteLine("Intersectia vectorilor este urmatoarea:");
+            for(i=0;i<poz;i++)
+                Console.Write(v3[i]+" ");
+        }
+
         /// <summary>
         /// Se dau doi vectori. Se cere sa se determine ordinea lor lexicografica (care ar trebui sa apara primul in dictionar). 
         /// </summary>
         private static void P21()
         {
-            throw new NotImplementedException();
+            string cuv1, cuv2;
+            int lungimea_minima=0,i,ok=0;
+            Console.WriteLine("Care este primul cuvant?");
+            cuv1 = Console.ReadLine();
+            Console.WriteLine("Care este al doilea cuvant?");
+            cuv2 = Console.ReadLine();
+            if (cuv1==cuv2)
+                Console.WriteLine("Cuvintele sunt la fel");
+            else if(cuv1[0]<cuv2[0])
+                    Console.WriteLine($"{cuv1} apare primul in dictionar");
+                else if(cuv1[0]>cuv2[0])
+                    Console.WriteLine($"{cuv2} apare primul in dictionar");
+            else
+            {
+                if (cuv1.Length <= cuv2.Length)
+                       lungimea_minima = cuv1.Length;
+                else if (cuv1.Length > cuv2.Length)
+                       lungimea_minima = cuv2.Length;
+                for (i = 1; i < lungimea_minima; i++)
+                {
+                    if (cuv1[i] < cuv2[i])
+                    {
+                        Console.WriteLine($"{cuv1} apare primul in dictionar");
+                        ok = 1;
+                        break;
+                    }
+                    else if (cuv1[i] > cuv2[i])
+                    {
+                        Console.WriteLine($"{cuv2} apare primul in dictionar");
+                        ok = 1;
+                        break;
+                    }
+                }
+                if(ok==0) //inseamna ca cuvantul de lungime minima este prefixul celuilalt (ex. ana si anamaria), asadar cuv. de lungime minima apare primul in dictionar
+                    if(cuv1.Length==lungimea_minima)
+                        Console.WriteLine($"{cuv1} apare primul in dictionar");
+                    else if (cuv2.Length == lungimea_minima)
+                        Console.WriteLine($"{cuv2} apare primul in dictionar");
+
+            }
+
         }
         /// <summary>
         /// Se dau doua siraguri de margele formate din margele albe si negre, notate s1, respectiv s2. 
@@ -307,7 +761,36 @@ namespace Set3_tablouri
         /// </summary>
         private static void P20()
         {
-            throw new NotImplementedException();
+            int n,i,suprapuneri=0;
+            Console.WriteLine("Cate margele au siragurile?");
+            n = int.Parse(Console.ReadLine());
+            int[] s1 = new int[n];
+            int[] s2 = new int[n];
+            Console.WriteLine("Introduceti, pe cate o linie, margelele primului sirag (1 pt. margea alba, 0 pt. margea neagra):");
+            for(i=0;i<n;i++)
+            {
+                s1[i] = int.Parse(Console.ReadLine());
+                if (s1[i] != 0 && s1[i] != 1)
+                {
+                    Console.Write("Numarul nu este valid");
+                    break;
+                }
+            }
+            Console.WriteLine("Introduceti, pe cate o linie, margelele celui de-al doilea sirag (1 pt. margea alba, 0 pt. margea neagra):");
+            for (i = 0; i < n; i++)
+            {
+                s2[i] = int.Parse(Console.ReadLine());
+                if (s2[i] != 0 && s2[i] != 1)
+                {
+                    Console.Write("Numarul nu este valid");
+                    break;
+                }
+            }
+            for (i = 0; i < n; i++)
+                if (s1[i] == s2[i])
+                    suprapuneri++;
+            Console.WriteLine($"Nr. de suprapuneri este {suprapuneri}");
+
         }
         /// <summary>
         /// Se da un vector s (vectorul in care se cauta) si un vector p (vectorul care se cauta). Determinati de cate ori apare p in s.
@@ -316,7 +799,41 @@ namespace Set3_tablouri
         /// </summary>
         private static void P19()
         {
-            throw new NotImplementedException();
+            int n, m,i,ok,pas,k,aparitii=0;
+            Console.WriteLine("Introduceti n (nr. de elemente ale vectorului s):");
+            n = int.Parse(Console.ReadLine());
+            int[] s = new int[n];
+            Console.WriteLine("Introduceti elementele vectorului s (cate unul pe o linie:");
+            for (i = 0; i < n; i++)
+                s[i] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introduceti m (nr. de elemente ale vectorului p):");
+            m = int.Parse(Console.ReadLine());
+            int[] p = new int[m];
+            Console.WriteLine("Introduceti elementele vectorului p (cate unul pe o linie):");
+            for (i = 0; i < m; i++)
+                p[i] = int.Parse(Console.ReadLine());
+            for(i=0;i<=n-m;i++)
+            {
+                ok = 1;
+                pas = 0;
+                k = 0;
+                while (ok!=0 && pas<m)
+                {
+                    if (s[i+k] != p[pas])
+                    {
+                        ok = 0;
+                        break;
+                    }
+                    else
+                    {
+                        pas++;
+                        k++;
+                    }
+                }
+                if (ok == 1)
+                    aparitii++;
+            }
+            Console.WriteLine($"vectorul p apare in vectorul s de {aparitii} ori");
         }
         /// <summary>
         /// Se da un polinom de grad n ai carui coeficienti sunt stocati intr-un vector. Cel mai putin semnificativ coeficient este
