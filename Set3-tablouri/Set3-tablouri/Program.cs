@@ -233,15 +233,150 @@ namespace Set3_tablouri
         /// </summary>
         private static void P29()
         {
-            throw new NotImplementedException();
+            int n, i;
+            Console.WriteLine("Cate elemente are vectorul?");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti elementele pe cate o linie:");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+
+            mergeSort(v, 0, n - 1);
+
+            Console.WriteLine("Vectorul sortat este:");
+            for (i = 0; i < n; i++)
+                Console.Write(v[i] + " ");
         }
+
+        //divizam vectorul in 2 subvectori, sortam si apoi ii "unim"
+        private static void mergeSort(int[] v, int l, int r)
+        {
+            if(l<r)
+            {
+                //m este punctul in care se divide vectorul
+                int m = l + (r - l) / 2;
+                mergeSort(v, l, m);
+                mergeSort(v, m + 1, r);
+
+                //unim cei 2 subvectori
+                merge(v, l, m, r);
+            }
+        }
+        
+        //uneste 2 subvectori (L si M) 
+        private static void merge(int[] v, int l, int m, int r)
+        {
+            //cream vectorii L si M (copiem elementele initiale din v)
+            int n1 = m - l + 1, n2 = r - m,i,j,k;
+            int[] L = new int[n1];
+            int[] M = new int[n2];
+            for (i = 0; i < n1; i++)
+                L[i] = v[l + i];
+            for (j = 0; j < n2; j++)
+                M[j] = v[m + 1 + j];
+
+            //retinem indexul subvectorilor si al vectorului principal
+            i = 0;
+            j = 0;
+            k = l;
+            
+            //pana cand ajungem la sfarsitul lui L sau M, alegem elementele cele mai mari din cei 2 subvectori si ii pozitionam corect in vector
+            while (i<n1 && j<n2)
+            {
+                if(L[i]<=M[j])
+                {
+                    v[k] = L[i];
+                    i++;
+                }
+                else
+                {
+                    v[k] = M[j];
+                    j++;
+                }
+                k++;
+            }
+
+            //cand am epuizat elementele din L sau M, punem elementele ramase in vectorul v
+            while(i<n1)
+            {
+                v[k] = L[i];
+                i++;
+                k++;
+            }
+            while(j<n2)
+            {
+                v[k] = M[j];
+                j++;
+                k++;
+            }
+        }
+
         /// <summary>
         /// Quicksort. Sortati un vector folosind metoda QuickSort.
         /// </summary>
         private static void P28()
         {
-            throw new NotImplementedException();
+            int n,i;
+            Console.WriteLine("Cate elemente are vectorul?");
+            n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            Console.WriteLine("Introduceti elementele pe cate o linie:");
+            for (i = 0; i < n; i++)
+                v[i] = int.Parse(Console.ReadLine());
+
+            quickSort(v, 0, n - 1);
+
+            Console.WriteLine("Vectorul sortat este:");
+            for(i=0;i<n;i++)
+                Console.Write(v[i]+" ");
         }
+
+        private static void quickSort(int[] v, int low, int high)
+        {
+            if (low<high)
+            {
+                //cauta un element pivot si elementele mai mici decat el vor fi in stanga, iar cele mai mari in dreapta 
+                int pi = partition(v, low, high);
+
+                //recursive call pentru stanga pivotului
+                quickSort(v, low, pi - 1);
+
+                //recursive call pentru dreapta pivotului
+                quickSort(v, pi + 1, high);
+            }
+        }
+
+        //functie care rearanjeaza vectorul; cauta punctul de partitie
+        private static int partition(int[] v, int low, int high)
+        {
+            int aux;
+            //selecteaza ca pivot ultimul element
+            int pivot = v[high];
+
+            //pozitia primului element
+            int i = low-1;
+
+            //parcurge fiecare element al vectorului si il compara cu pivotul
+
+            for (int j=low;j<high;j++)
+                if(v[j]<=pivot)
+                {
+                    //daca gasim un element mai mic decat pivotul il interschimbam cu elementul de pe pozitia i
+                    i++;
+                    aux = v[i];
+                    v[i] = v[j];
+                    v[j] = aux;
+                }
+            //interschimbam pivotul cu elementul de pe poz i
+            aux = v[i + 1];
+            v[i + 1] = v[high];
+            v[high] = aux;
+
+            //returneaza punctul de partitie
+            return (i + 1);
+
+        }
+
         /// <summary>
         ///  Se da un vector si un index in vectorul respectiv. Se cere sa se determine valoarea din vector care va fi pe pozitia index 
         ///  dupa ce vectorul este sortat. 
